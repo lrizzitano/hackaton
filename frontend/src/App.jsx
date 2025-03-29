@@ -4,21 +4,33 @@ import "./App.css";
 function App() {
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    // Traer las categorías
+    // Obtener todas las categorías
     fetch("http://localhost:5000/api/categorias")
       .then((res) => res.json())
       .then((data) => setCategories(data))
-      .catch((err) => console.error("Error fetching categories:", err));
+      .catch((err) => console.error("Error al obtener categorías:", err));
 
-    // Traer las empresas
+    // Obtener todas las empresas
     fetch("http://localhost:5000/api/empresas")
       .then((res) => res.json())
       .then((data) => setCompanies(data))
-      .catch((err) => console.error("Error fetching companies:", err));
+      .catch((err) => console.error("Error al obtener empresas:", err));
   }, []);
+
+  // Obtener productos de la categoría seleccionada
+  const fetchProductsByCategory = (categoryId) => {
+    fetch(`http://localhost:5000/api/productos/categoria/${categoryId}`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Error al obtener productos:", err));
+
+    setSelectedCategory(categoryId);
+  };
 
   // Filtrar categorías y empresas según el término de búsqueda
   const filteredCategories = categories.filter((category) =>
@@ -48,7 +60,13 @@ function App() {
       <div className="categories-container">
         {filteredCategories.length > 0 ? (
           filteredCategories.map((category, index) => (
-            <div key={index} className="category-card">
+            <div
+              key={index}
+              className={`category-card ${
+                selectedCategory === category._id ? "selected" : ""
+              }`}
+              onClick={() => fetchProductsByCategory(category._id)}
+            >
               <img src={category.image} alt={category.name} className="category-image" />
               <p className="category-name">{category.name}</p>
             </div>
@@ -57,6 +75,28 @@ function App() {
           <p className="no-results">No se encontraron categorías.</p>
         )}
       </div>
+
+      {/* Sección de Productos de la Categoría Seleccionada */}
+      {selectedCategory && (
+        <>
+          <div className="section-title">Productos</div>
+          <div className="products-container">
+            {products.length > 0 ? (
+              products.map((product, index) => (
+                <div key={index} className="product-card">
+                  <img src={product.image} alt={product.name} className="product-image" />
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-description">{product.description}</p>
+                  <p className="product-price">💲{product.price}</p>
+                  <p className="product-company">🏢 {product.company.name}</p>
+                </div>
+              ))
+            ) : (
+              <p className="no-results">No hay productos en esta categoría.</p>
+            )}
+          </div>
+        </>
+      )}
 
       {/* Sección de Empresas */}
       <div className="section-title">Empresas</div>
