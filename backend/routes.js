@@ -71,4 +71,18 @@ router.get('/productos', async (req, res) => {
     }
 });
 
+// Obtener todas las categorías
+router.get('/categorias', async (req, res) => {
+    try {
+        // Encontramos todas las categorías
+        const categories = await Category.find();
+
+        // Devolvemos el array de categorías
+        res.send(categories);
+    } catch (error) {
+        console.error("Error al obtener las categorías:", error);
+        res.status(404).send({ error: "No se encontraron categorías." });
+    }
+});
+
 export default router;
