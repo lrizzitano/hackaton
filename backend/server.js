@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
+import routes from './routes.js'; // Importamos las rutas
 
 dotenv.config();
 
@@ -8,9 +9,7 @@ const app = express();
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+app.use("/api", productoRoutes);
 
 app.listen(5000, () => {
     connectDB();    // conectamos a la database
