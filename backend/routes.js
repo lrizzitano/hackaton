@@ -38,16 +38,11 @@ router.get('/productos/empresa/:id', async (req, res) => {
     }
 });
 
-// Buscar producto por nombre
-router.get('/productos/buscar/:nombre', async (req, res) => {});
-
-
 // ver empresas ordenadas por puntaje
 router.get('/empresas', async (req, res) => {
     try {
       // Encontramos todas las empresas
       const companies = await Company.find()
-        .populate('products');  // Poblar la lista de productos
   
     // Ordenamos las empresas por el campo 'rating' de mayor a menor
     const sortedCompanies = companies.sort((a, b) => b.rating - a.rating);
@@ -56,8 +51,24 @@ router.get('/empresas', async (req, res) => {
     res.send(sortedCompanies);
     } catch (error) {
         console.error("Error del servidor", error);
-        res.status(404).send({ error: "Productos no encontrados para la empresa especificada." });
+        res.status(404).send({ error: "No se encontrar empresas" });
     }
   });
+
+// Ver todos los productos
+router.get('/productos', async (req, res) => {
+    try {
+        // Encontramos todos los productos
+        const products = await Product.find()
+            .populate('category')  // Poblar el campo 'category'
+            .populate('company');  // Poblar el campo 'company'
+
+        // Devolvemos el array de productos con las referencias pobladas
+        res.send(products);
+    } catch (error) {
+        console.error("Error del servidor", error);
+        res.status(404).send({ error: "No se encontraron productos" });
+    }
+});
 
 export default router;
