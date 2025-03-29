@@ -66,3 +66,22 @@
   height: auto;
   border-radius: 8px;
 }
+
+.category-card {
+  cursor: pointer; /* Hace que el cursor cambie a una mano al pasar el mouse */
+  transition: transform 0.2s ease-in-out; /* Agrega una animación suave */
+}
+
+.category-card:hover {
+  transform: scale(1.05); /* Hace que la categoría se agrande un poco al pasar el mouse */
+}
+
+.company-card {
+  cursor: pointer; /* Hace que el cursor cambie a una mano al pasar el mouse */
+  transition: transform 0.2s ease-in-out; /* Agrega una animación suave */
+}
+
+.company-card:hover {
+  transform: scale(1.05); /* Hace que la tarjeta de empresa se agrande un poco al pasar el mouse */
+}
+
