@@ -2,12 +2,17 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import routes from './routes.js'; // Importamos las rutas
+import cors from 'cors';
 
 dotenv.config();
+
+const allowedOrigins = ['http://localhost:5173/'];
 
 const app = express();
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
+
+app.use(cors());
 
 app.use("/api", routes);
 
