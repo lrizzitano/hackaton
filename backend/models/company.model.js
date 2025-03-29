@@ -17,11 +17,7 @@ const companySchema = new mongoose.Schema({
     rating: {
         type: Number,  // Tipo de dato: Número (calificación de la empresa)
         required: true // Es obligatorio
-    },
-    products: [{
-        type: mongoose.Schema.Types.ObjectId, // Tipo de dato: ObjectId (referencia a otro documento)
-        ref: "Product" // Referencia al modelo "Product"
-    }]
+    }
 });
 
 // Creamos el modelo "Company" basado en el esquema

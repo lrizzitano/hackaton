@@ -9,11 +9,7 @@ const categorySchema = new mongoose.Schema({
     image: {
         type: String,  // Tipo de dato: String (URL de la imagen)
         required: true // Es obligatorio
-    },
-    products: [{
-        type: mongoose.Schema.Types.ObjectId, // Tipo de dato: ObjectId (referencia a otro documento)
-        ref: "Product" // Referencia al modelo "Product"
-    }]
+    }
 });
 
 // Creamos el modelo "Category" basado en el esquema
