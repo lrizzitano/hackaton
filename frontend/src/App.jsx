@@ -186,8 +186,8 @@ function App() {
         {/* Sección de Empresas */}
         <div className="section-title">🏆 Ranking de Empresas</div>
         <div className="leaderboard-container">
-          {filteredCompanies.length > 0 ? (
-            filteredCompanies.map((company, index) => (
+          {companies.length > 0 ? (
+            companies.map((company, index) => (
               <div key={index} className="leaderboard-item">
                 <span className="leaderboard-rank">#{index + 1}</span>
                 <img src={company.image} alt={company.name} className="leaderboard-logo" />
