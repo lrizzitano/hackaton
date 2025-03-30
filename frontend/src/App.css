@@ -300,3 +300,30 @@
 .login-submit-button:hover {
   background-color: #f0f0f0;
 }
+
+.cart-button {
+  position: fixed;
+  top: 9px;
+  right: 130px; /* Ajusta para que esté junto al botón de login */
+  background-color: #66bb6a; /* Color verde */
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
+}
+
+.cart-icon {
+  width: 24px; /* Ajusta el tamaño del icono */
+  height: 24px;
+  filter: brightness(0) invert(1); /* Hace que la imagen se vea blanca si es oscura */
+}
+
+
