@@ -95,9 +95,6 @@ function App() {
     setSearch(e.target.value);
   } 
 
-  const addProductToCart = (product) => {
-    setProductsOnCart(prevProducts => [...prevProducts, product]);
-  }
   return (
     <>
     <title>Ethos Market</title>
@@ -260,7 +257,10 @@ function App() {
                   <p className="product-price">💲{product.price}</p>
                   <p className="product-company">🏢 {product.company.name}</p>
                   <div className="contenedor">
-                    <button onClick={addProductToCart(product)}  className="boton-carrito">Agregar al carrito</button>
+                    <button onClick={() => {
+                      console.log(productsOnCart);
+                      setProductsOnCart(prevProducts => [...prevProducts, product]);
+                    }}  className="boton-carrito">Agregar al carrito</button>
                   </div>
 
                 </div>
