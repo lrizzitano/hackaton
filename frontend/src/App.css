@@ -315,3 +315,14 @@
 .boton-cerrar:hover {
   background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
 }
+
+.logged-message {
+  position: absolute;
+  top: 10px;
+  right: 10px;  
+  background-color: #4CAF50;
+  color: white;
+  font: bolder 1.2em sans-serif;
+  padding: 10px;
+  border-radius: 4px;
+}

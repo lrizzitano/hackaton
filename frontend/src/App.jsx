@@ -10,7 +10,6 @@ function App() {
   // Estado para controlar la visibilidad del panel de login
   const [loginOpen, setLoginOpen] = useState(false);
 
-
     // --------------------------------------------------------------------------
     // Función para alternar la visibilidad del panel de login
     const toggleLogin = () => {
@@ -35,6 +34,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
+
 
   useEffect(() => {
     // Obtener todas las categorías
@@ -124,6 +124,12 @@ function App() {
               Logearse
             </button>
           </form>
+        </div>
+      )}
+
+      {login && (
+        <div className="logged-message">
+          Logeado
         </div>
       )}
     
