@@ -442,3 +442,32 @@
   height: 70px;
   margin-right: 10px;
 }
+
+.checkout-button {
+  background-color: green;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: auto; /* Empuja el botón hacia abajo */
+}
+
+.checkout-button:hover {
+  background-color: darkgreen;
+}
+.carrito-panel {
+  width: 100px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 70px; /* Ajustado para que esté más abajo */
+  right: 10px;
+  z-index: 1000;
+}

@@ -152,8 +152,24 @@ function App() {
           <div className="boton-cerrar" onClick={toggleCartPanel}>
             X
           </div>
-          <h2>Carrito de Compras</h2>
-          Aca iria el panel del carrito
+          <h2 className="carrito-h2">Carrito de Compras</h2>
+          {productsOnCart.length > 0 ? (
+              productsOnCart.map((product, index) => (
+                <div key={index}>
+                  <p>{product.name}</p>
+                  <p>💲{product.price}</p>
+                </div>
+              ))
+            ) : (
+              <p className="no-results">No hay productos en el carrito.</p>
+            )}
+          
+        <p>💲Total: {productsOnCart.reduce((sum, product) => sum + product.price, 0)}</p>
+
+        <button className="checkout-button" onClick={(e) => {
+          toggleCartPanel();
+          setProductsOnCart([]);
+        }}> Comprar </button>
         </div>
       )}
 
