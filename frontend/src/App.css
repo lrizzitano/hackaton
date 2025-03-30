@@ -427,3 +427,18 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.login-submit-button:hover {
+  background-color: #f0f0f0;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header img {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+}
