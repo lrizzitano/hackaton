@@ -22,7 +22,7 @@ Sigue estos pasos para buildear y ejecutar el proyecto:
 1. 📂 Clona el repositorio:
 
    ```sh
-   git clone <URL_DEL_REPOSITORIO>
+   git clone https://github.com/lrizzitano/hackaton.git
    cd EthosMarket
    ```
 
