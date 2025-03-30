@@ -145,6 +145,11 @@ function App() {
           onChange={(e) => filterProductsBySearch(e)}
         />
 
+        <div className="cart-button">
+          <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
+        </div>
+
+
         {/* Sección de Categorías */}
         <div className="section-title">Categorías</div>
         <div className="categories-container">
