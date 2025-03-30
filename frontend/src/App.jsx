@@ -47,7 +47,7 @@ function App() {
       {showCatalog ? (
        <>
         {/* Título principal */}
-        <h1 className="main-title">EcoMarket</h1>
+        <h1 className="main-title">EcoStore</h1>
 
         {/* Barra de búsqueda */}
         <input
@@ -102,17 +102,21 @@ function App() {
         )}
 
         {/* Sección de Empresas */}
-        <div className="section-title">Empresas</div>
-        <div className="companies-container">
+        <div className="section-title">🏆 Ranking de Empresas</div>
+        <div className="leaderboard-container">
           {filteredCompanies.length > 0 ? (
             filteredCompanies.map((company, index) => (
-              <div key={index} className="company-card">
-                <img src={company.image} alt={company.name} className="company-image" />
-                <h3 className="company-name">{company.name}</h3>
-                <p className="company-description">{company.description}</p>
-                <p className="company-rating">⭐ {company.rating}</p>
+              <div key={index} className="leaderboard-item">
+                <span className="leaderboard-rank">#{index + 1}</span>
+                <img src={company.image} alt={company.name} className="leaderboard-logo" />
+                <div className="leaderboard-info">
+                 <h3 className="leaderboard-name">{company.name}</h3>
+                 <p className="company-description">{company.description}</p>
+                <p className="leaderboard-rating">⭐ {company.rating}</p>
+                </div>
               </div>
             ))
+            
           ) : (
             <p className="no-results">No se encontraron empresas.</p>
           )}
@@ -126,7 +130,7 @@ function App() {
     ) : (
       // 📌 Página de inicio
       <div className="home-container">
-        <h1 className="home-title">Bienvenido a EcoMarket</h1>
+        <h1 className="home-title">Bienvenido a EcoStore</h1>
         <p className="home-description">
           Un marketplace sustentable donde encontrarás productos ecológicos de las mejores empresas comprometidas con el medio ambiente.
         </p>

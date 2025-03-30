@@ -69,8 +69,18 @@
 
 /* Página de inicio */
 .home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   text-align: center;
-  padding: 50px;
+  padding: 20px;
+  color: white;
+  background-image: url('https://media.istockphoto.com/id/1248543652/es/vector/fondo-verde-abstracto-suave-y-de-ensue%C3%B1o.jpg?s=612x612&w=0&k=20&c=k5Lzs4HcAFvJrQiKU5IPT1dfVFjJSmeJ9FAzl3dhkYE='); /* Ruta de la imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .home-title {
@@ -122,12 +132,60 @@
   transform: scale(1.05); /* Hace que la categoría se agrande un poco al pasar el mouse */
 }
 
-.company-card {
-  cursor: pointer; /* Hace que el cursor cambie a una mano al pasar el mouse */
-  transition: transform 0.2s ease-in-out; /* Agrega una animación suave */
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
 }
 
-.company-card:hover {
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out; /* Agrega una animación suave */
+  cursor: pointer; /* Hace que el cursor cambie a una mano al pasar el mouse */
+}
+
+.leaderboard-item:hover {
   transform: scale(1.05); /* Hace que la tarjeta de empresa se agrande un poco al pasar el mouse */
+}
+
+.leaderboard-rank {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #555;
+  margin-right: 15px;
+}
+
+.leaderboard-logo {
+  width: 60px;  /* Puedes cambiar el tamaño aquí */
+  height: 60px; /* Puedes cambiar el tamaño aquí */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.leaderboard-info {
+  flex-grow: 1;
+}
+
+.leaderboard-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.leaderboard-rating {
+  font-size: 0.9rem;
+  color: #777;
 }
 
