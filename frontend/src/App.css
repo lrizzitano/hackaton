@@ -392,3 +392,24 @@
 .boton-carrito:hover {
   background-color: darkgreen;
 }
+
+.carrito-panel {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: #66bb6a; /* Verde claro */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.login-submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #66bb6a;
+  border: 1px solid #66bb6a;
+  border-radius: 4px;
+  cursor: pointer;
+}

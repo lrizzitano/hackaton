@@ -151,7 +151,11 @@ function App() {
       )}
 
       {cartOpen && (
-        <div>
+        <div className="carrito-panel">
+          <div className="boton-cerrar" onClick={toggleCartPanel}>
+            X
+          </div>
+          <h2>Carrito de Compras</h2>
           Aca iria el panel del carrito
         </div>
       )}
