@@ -76,6 +76,8 @@ function App() {
 
   return (
     <>
+    <title>Ethos Market</title>
+    <link rel="icon" href="./favicon.ico" />
       {/*
         Condicionalmente se muestra el botón "Log In" si el usuario aún no se ha logeado.
         Si login es true, el botón desaparece.
