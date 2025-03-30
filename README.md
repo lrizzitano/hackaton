@@ -26,14 +26,19 @@ Sigue estos pasos para buildear y ejecutar el proyecto:
    cd EthosMarket
    ```
 
+En Linux se puede usar el script run.sh para generar la build y ejecutar el servidor con un solo script de la siguiente manera:
+```sh
+. run.sh
+```
+En otro caso se puede hacer la build y ejecutar el servidor por sepadado de la siguiente manera:
+
 2. 📦 Genera la build:
 
    ```sh
-   npm install
    npm run build
    ```
 
-3. ▶️ Ejecuta el servidor según tu sistema operativo:
+4. ▶️ Ejecuta el servidor según tu sistema operativo:
 
    - En **Linux**:
      ```sh
@@ -48,7 +53,7 @@ Sigue estos pasos para buildear y ejecutar el proyecto:
      node backend/server.js
      ```
 
-4. 🌐 Accede a la aplicación en tu navegador:
+5. 🌐 Accede a la aplicación en tu navegador:
 
    ```
    http://localhost:5000
