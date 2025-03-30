@@ -2,11 +2,38 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  // --------------------------------------------------------------------------
+  // Estado para controlar si el usuario ya se ha logeado
+  const [login, setLogin] = useState(false);
+
+  // --------------------------------------------------------------------------
+  // Estado para controlar la visibilidad del panel de login
+  const [loginOpen, setLoginOpen] = useState(false);
+
+
+    // --------------------------------------------------------------------------
+    // Función para alternar la visibilidad del panel de login
+    const toggleLogin = () => {
+      setLoginOpen(!loginOpen); // Cambia de abierto a cerrado o viceversa
+    };
+
+    // --------------------------------------------------------------------------
+    // Función para manejar el envío del formulario del login
+    // Al presionar Enter o al hacer click en el botón "Logearse", se cierra el panel y se marca como logeado
+    const handleLoginSubmit = (e) => {
+      e.preventDefault(); // Evita el comportamiento por defecto del formulario
+      toggleLogin();      // Cierra el panel de login
+      setLogin(true);     // Marca que el usuario ya se logeo
+    };
+
+
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [products, setProducts] = useState([]);
+  const [productsShown, setProductsShown] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
 
   useEffect(() => {
@@ -21,28 +48,83 @@ function App() {
       .then((res) => res.json())
       .then((data) => setCompanies(data))
       .catch((err) => console.error("Error al obtener empresas:", err));
+
+    
+    // Obtener todos los productos (no se si es lo ideal traer todo al front, pero es lo que hay)
+    fetch("http://localhost:5000/api/productos")
+    .then((res) => res.json())
+    .then((data) => setProducts(data))
+    .catch((err) => console.error("Error al obtener productos:", err));
+  
   }, []);
 
   // Obtener productos de la categoría seleccionada
-  const fetchProductsByCategory = (categoryId) => {
-    fetch(`http://localhost:5000/api/productos/categoria/${categoryId}`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Error al obtener productos:", err));
-
+  const filterProductsByCategory = (categoryId) => {
+    setProductsShown(products.filter((product => product.category._id === categoryId)));
     setSelectedCategory(categoryId);
   };
-
-  // Filtrar categorías y empresas según el término de búsqueda
-  const filteredCategories = categories.filter((category) =>
+  
+  /*.filter((category) =>
     category.name.toLowerCase().includes(search.toLowerCase())
-  );
+  );*/
 
-  const filteredCompanies = companies.filter((company) =>
-    company.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filterProductsBySearch = (e) => {
+    setProductsShown(products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())));
+    setSearch(e.target.value);
+  } 
+
 
   return (
+    <>
+      {/*
+        Condicionalmente se muestra el botón "Log In" si el usuario aún no se ha logeado.
+        Si login es true, el botón desaparece.
+      */}
+      {!login && (
+        <div className="login-button" onClick={toggleLogin}>
+          Log In
+        </div>
+      )}
+
+      {/*
+        Panel de login centrado en la pantalla.
+        Se muestra si loginOpen es true.
+        Se utiliza un formulario para que al presionar Enter se active el botón.
+      */}
+      {loginOpen && (
+        <div className="login-panel">
+          <form onSubmit={handleLoginSubmit}>
+            {/* Input para ingresar el mail */}
+            <div className="input-container">
+              <label htmlFor="email">Ingrese su mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="ejemplo@correo.com"
+              />
+            </div>
+            {/* Input para ingresar la contraseña */}
+            <div className="input-container">
+              <label htmlFor="password">Ingrese su contraseña</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="********"
+              />
+            </div>
+            {/* Botón "Logearse" que se activa al hacer click o presionar Enter */}
+            <button type="submit" className="login-submit-button">
+              Logearse
+            </button>
+          </form>
+        </div>
+      )}
+    
+      {/* ---------------------------------------------------------------------- */}
+
+
     <div className="container">
       {showCatalog ? (
        <>
@@ -55,20 +137,20 @@ function App() {
           placeholder="Buscar categorías o empresas..."
           className="search-bar"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => filterProductsBySearch(e)}
         />
 
         {/* Sección de Categorías */}
         <div className="section-title">Categorías</div>
         <div className="categories-container">
-          {filteredCategories.length > 0 ? (
-            filteredCategories.map((category, index) => (
+          {categories.length > 0 ? (
+            categories.map((category, index) => (
               <div
                 key={index}
                 className={`category-card ${
                   selectedCategory === category._id ? "selected" : ""
                 }`}
-                onClick={() => fetchProductsByCategory(category._id)}
+                onClick={() => filterProductsByCategory(category._id)}
               >
                 <img src={category.image} alt={category.name} className="category-image" />
                 <p className="category-name">{category.name}</p>
@@ -84,8 +166,8 @@ function App() {
           <>
             <div className="section-title">Productos</div>
             <div className="products-container">
-              {products.length > 0 ? (
-                products.map((product, index) => (
+              {productsShown.length > 0 ? (
+                productsShown.map((product, index) => (
                   <div key={index} className="product-card">
                     <img src={product.image} alt={product.name} className="product-image" />
                     <h3 className="product-name">{product.name}</h3>
@@ -140,6 +222,7 @@ function App() {
       </div>
      )}
    </div>
+    </>
   );
 }
 
