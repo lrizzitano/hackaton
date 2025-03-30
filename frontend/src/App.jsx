@@ -165,8 +165,12 @@ function App() {
     <div className="container">
       {showCatalog ? (
        <>
-        {/* Título principal */}
-        <h1 className="main-title">Ethos Market</h1>
+        <div className="header">
+          {/* Logo */}
+          <img src="/Ethosmarket-Logo3.png" alt="Logo" />
+          {/* Título principal */}
+          <h1 className="main-title">Ethos Market</h1>
+        </div>
 
         {/* Barra de búsqueda */}
         <input
