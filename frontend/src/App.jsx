@@ -34,6 +34,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
+  const [productCounter, setProductCounter] = useState(0); // Contador de productos en el carrito
   const [showProductsWithoutCategory, setShowProductsWithoutCategory] = useState(false);
 
 
@@ -241,9 +242,9 @@ function App() {
                 <div key={index} className="product-card">
                   <img src={product.image} alt={product.name} className="product-image" />
                   <h3 className="product-name">{product.name}</h3>
-                  <p className="product-description">{product.description}</p>
                   <p className="product-price">💲{product.price}</p>
                   <p className="product-company">🏢 {product.company.name}</p>
+                  <button className="add-to-cart-button">Agregar al carrito</button>
                 </div>
               ))
             ) : (
