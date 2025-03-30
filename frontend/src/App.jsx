@@ -35,6 +35,8 @@ function App() {
   const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
   const [productCounter, setProductCounter] = useState(0); // Contador de productos en el carrito
+  const [showProductsWithoutCategory, setShowProductsWithoutCategory] = useState(false);
+
 
   useEffect(() => {
     // Obtener todas las categorías
@@ -62,15 +64,28 @@ function App() {
   const filterProductsByCategory = (categoryId) => {
     setProductsShown(products.filter((product => product.category._id === categoryId)));
     setShowProducts(true);
+    setShowProductsWithoutCategory(false);
     setShowCatalog(false);
     setSelectedCategory(categoryId);
   };
   
-const getSelectedCategoryName = () => {
-  return categories.find(cat => cat._id === selectedCategory).name
-}
-  const filterProductsBySearch = (e) => {
+  const getSelectedCategoryName = () => {
+    return categories.find(cat => cat._id === selectedCategory).name
+  }
+  const filterProductsBySearchWithCategory = (e) => {
+    setProductsShown(products.filter(product => {
+      return product.name.toLowerCase().includes(e.target.value.toLowerCase()) && product.category._id === selectedCategory;
+    }));
+    setShowProducts(true);
+    setShowCatalog(false);
+    setSearch(e.target.value);
+  }
+
+  const filterProductsBySearchWithoutCategory = (e) => {
     setProductsShown(products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())));
+    setShowProducts(true);
+    setShowProductsWithoutCategory(true);
+    setShowCatalog(false);
     setSearch(e.target.value);
   } 
 
@@ -140,15 +155,15 @@ const getSelectedCategoryName = () => {
       {showCatalog ? (
        <>
         {/* Título principal */}
-        <h1 className="main-title">EcoStore</h1>
+        <h1 className="main-title">Ethos Market</h1>
 
         {/* Barra de búsqueda */}
         <input
           type="text"
-          placeholder="Buscar categorías o empresas..."
+          placeholder="Buscar productos"
           className="search-bar"
           value={search}
-          onChange={(e) => filterProductsBySearch(e)}
+          onChange={(e) => filterProductsBySearchWithoutCategory(e)}
         />
 
         <div className="cart-button">
@@ -206,7 +221,21 @@ const getSelectedCategoryName = () => {
     ) : showProducts ? (
 
         <>
-          <div className="section-title">{getSelectedCategoryName()}</div>
+          {/* Barra de búsqueda */}
+          <input
+          type="text"
+          placeholder="Buscar productos"
+          className="search-bar"
+          value={search}
+          onChange={(e) => {
+            showProductsWithoutCategory? filterProductsBySearchWithoutCategory(e) : filterProductsBySearchWithCategory(e);
+            }}
+        />
+
+        <div className="cart-button">
+          <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
+        </div>
+          <div className="section-title">{showProductsWithoutCategory? "Productos" : getSelectedCategoryName()}</div>
           <div className="products-container">
             {productsShown.length > 0 ? (
               productsShown.map((product, index) => (
@@ -223,7 +252,7 @@ const getSelectedCategoryName = () => {
             )}
           </div>
         {/* Botón para volver a la página principal */}
-        <button className="back-button" onClick={() => {setShowProducts(false); setShowCatalog(true)}}>
+        <button className="back-button" onClick={() => {setShowProducts(false); setShowCatalog(true); setSearch("")}}>
           Volver atras
         </button>
         </>
