@@ -15,7 +15,13 @@ const __dirname = path.resolve();
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
-app.use(cors());
+app.use(cors(
+	{
+		origin: 'https://hackathon-7an5.onrender.com', // Ajusta con la URL correcta
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		credentials: true
+	}
+));
 
 app.use("/api", routes);
 
