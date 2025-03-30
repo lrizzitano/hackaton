@@ -40,20 +40,20 @@ function App() {
 
   useEffect(() => {
     // Obtener todas las categorías
-    fetch("http://localhost:5000/api/categorias")
+    fetch("https://hackathon-9hw7.onrender.com/api/categorias")
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error("Error al obtener categorías:", err));
 
     // Obtener todas las empresas
-    fetch("http://localhost:5000/api/empresas")
+    fetch("https://hackathon-9hw7.onrender.com/api/empresas")
       .then((res) => res.json())
       .then((data) => setCompanies(data))
       .catch((err) => console.error("Error al obtener empresas:", err));
 
     
     // Obtener todos los productos (no se si es lo ideal traer todo al front, pero es lo que hay)
-    fetch("http://localhost:5000/api/productos")
+    fetch("https://hackathon-9hw7.onrender.com/api/productos")
     .then((res) => res.json())
     .then((data) => setProducts(data))
     .catch((err) => console.error("Error al obtener productos:", err));
