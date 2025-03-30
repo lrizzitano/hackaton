@@ -61,13 +61,14 @@ function App() {
   // Obtener productos de la categoría seleccionada
   const filterProductsByCategory = (categoryId) => {
     setProductsShown(products.filter((product => product.category._id === categoryId)));
+    setShowProducts(true);
+    setShowCatalog(false);
     setSelectedCategory(categoryId);
   };
   
-  /*.filter((category) =>
-    category.name.toLowerCase().includes(search.toLowerCase())
-  );*/
-
+const getSelectedCategoryName = () => {
+  return categories.find(cat => cat._id === selectedCategory).name
+}
   const filterProductsBySearch = (e) => {
     setProductsShown(products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())));
     setSearch(e.target.value);
@@ -151,6 +152,11 @@ function App() {
           onChange={(e) => filterProductsBySearch(e)}
         />
 
+        <div className="cart-button">
+          <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
+        </div>
+
+
         {/* Sección de Categorías */}
         <div className="section-title">Categorías</div>
         <div className="categories-container">
@@ -171,28 +177,6 @@ function App() {
             <p className="no-results">No se encontraron categorías.</p>
           )}
         </div>
-
-        {/* Sección de Productos de la Categoría Seleccionada */}
-        {selectedCategory && (
-          <>
-            <div className="section-title">Productos</div>
-            <div className="products-container">
-              {productsShown.length > 0 ? (
-                productsShown.map((product, index) => (
-                  <div key={index} className="product-card">
-                    <img src={product.image} alt={product.name} className="product-image" />
-                    <h3 className="product-name">{product.name}</h3>
-                    <p className="product-description">{product.description}</p>
-                    <p className="product-price">💲{product.price}</p>
-                    <p className="product-company">🏢 {product.company.name}</p>
-                  </div>
-                ))
-              ) : (
-                <p className="no-results">No hay productos en esta categoría.</p>
-              )}
-            </div>
-          </>
-        )}
 
         {/* Sección de Empresas */}
         <div className="section-title">🏆 Ranking de Empresas</div>
@@ -220,6 +204,31 @@ function App() {
           Volver al inicio
         </button>
       </>
+    ) : showProducts ? (
+
+        <>
+          <div className="section-title">{getSelectedCategoryName()}</div>
+          <div className="products-container">
+            {productsShown.length > 0 ? (
+              productsShown.map((product, index) => (
+                <div key={index} className="product-card">
+                  <img src={product.image} alt={product.name} className="product-image" />
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-description">{product.description}</p>
+                  <p className="product-price">💲{product.price}</p>
+                  <p className="product-company">🏢 {product.company.name}</p>
+                </div>
+              ))
+            ) : (
+              <p className="no-results">No hay productos en esta categoría.</p>
+            )}
+          </div>
+        {/* Botón para volver a la página principal */}
+        <button className="back-button" onClick={() => {setShowProducts(false); setShowCatalog(true)}}>
+          Volver atras
+        </button>
+        </>
+    
     ) : (
       // 📌 Página de inicio
       <div className="home-container">
@@ -231,7 +240,9 @@ function App() {
           Ir al catálogo
         </button>
       </div>
-     )}
+     )
+     
+   }
    </div>
     </>
   );
