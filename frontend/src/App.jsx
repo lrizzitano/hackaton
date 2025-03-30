@@ -134,9 +134,9 @@ function App() {
                 placeholder="********"
               />
             </div>
-            {/* Botón "Logearse" que se activa al hacer click o presionar Enter */}
+            {/* Botón "Loguearse" que se activa al hacer click o presionar Enter */}
             <button type="submit" className="login-submit-button">
-              Logearse
+              Loguearse
             </button>
           </form>
         </div>
@@ -244,7 +244,10 @@ function App() {
                   <h3 className="product-name">{product.name}</h3>
                   <p className="product-price">💲{product.price}</p>
                   <p className="product-company">🏢 {product.company.name}</p>
-                  <button className="add-to-cart-button">Agregar al carrito</button>
+                  <div className="contenedor">
+                    <button className="boton-carrito">Agregar al carrito</button>
+                  </div>
+
                 </div>
               ))
             ) : (
