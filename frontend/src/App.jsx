@@ -10,10 +10,16 @@ function App() {
   // Estado para controlar la visibilidad del panel de login
   const [loginOpen, setLoginOpen] = useState(false);
 
+  const [cartOpen, setCartOpen] = useState(false);
+
     // --------------------------------------------------------------------------
     // Función para alternar la visibilidad del panel de login
     const toggleLogin = () => {
       setLoginOpen(!loginOpen); // Cambia de abierto a cerrado o viceversa
+    };
+
+    const toggleCartPanel = () => {
+      setCartOpen(!cartOpen); // Cambia de abierto a cerrado o viceversa
     };
     // --------------------------------------------------------------------------
 
@@ -34,12 +40,12 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
-  const [productCounter, setProductCounter] = useState(0); // Contador de productos en el carrito
+  const [productsOnCart, setProductsOnCart] = useState([]); // Contador de productos en el carrito
   const [showProductsWithoutCategory, setShowProductsWithoutCategory] = useState(false);
 
 
   useEffect(() => {
-    // Obtener todas las categorías
+    // Obtener todas las categorías   
     fetch("https://hackathon-9hw7.onrender.com/api/categorias")
       .then((res) => res.json())
       .then((data) => setCategories(data))
@@ -89,7 +95,9 @@ function App() {
     setSearch(e.target.value);
   } 
 
-
+  const addProductToCart = (product) => {
+    setProductsOnCart(prevProducts => [...prevProducts, product]);
+  }
   return (
     <>
     <title>Ethos Market</title>
@@ -142,6 +150,12 @@ function App() {
         </div>
       )}
 
+      {cartOpen && (
+        <div>
+          Aca iria el panel del carrito
+        </div>
+      )}
+
       {login && (
         <div className="logged-message">
           Logeado
@@ -166,7 +180,7 @@ function App() {
           onChange={(e) => filterProductsBySearchWithoutCategory(e)}
         />
 
-        <div className="cart-button">
+        <div className="cart-button" onClick={toggleCartPanel}>
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
         </div>
 
@@ -233,7 +247,7 @@ function App() {
             }}
         />
 
-        <div className="cart-button">
+        <div className="cart-button" onClick={toggleCartPanel}>
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
         </div>
           <div className="section-title">{showProductsWithoutCategory? "Productos" : getSelectedCategoryName()}</div>
@@ -246,7 +260,7 @@ function App() {
                   <p className="product-price">💲{product.price}</p>
                   <p className="product-company">🏢 {product.company.name}</p>
                   <div className="contenedor">
-                    <button className="boton-carrito">Agregar al carrito</button>
+                    <button onClick={addProductToCart(product)}  className="boton-carrito">Agregar al carrito</button>
                   </div>
 
                 </div>
