@@ -15,7 +15,13 @@ const __dirname = path.resolve();
 
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
-app.use(cors());
+app.use(cors(
+	{
+		origin: 'https://hackathon-9hw7.onrender.com', // Ajusta con la URL correcta
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		credentials: true
+	}
+));
 
 app.use("/api", routes);
 
@@ -27,7 +33,7 @@ if(process.env.NODE_ENV === 'production') {
 	});
 }
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     connectDB();    // conectamos a la database
     console.log('Server is running on port 5000');
 });
