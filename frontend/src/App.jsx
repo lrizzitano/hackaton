@@ -267,7 +267,7 @@ function App() {
         <h1 className="home-title">Ethos Market</h1>
         <h2 className="home-subtitle">"El poder de elegir, el poder de cambiar"</h2>
         <p className="home-description">
-          En EthosMarket creemos que cada compra es un voto por el futuro que queremos.
+          En Ethos Market creemos que cada compra es un voto por el futuro que queremos.
           Nuestra plataforma no es solo una tienda online, sino una herramienta de empoderamiento
           para los consumidores. A través de información clara y accesible, ayudamos a nuestros clientes
           a tomar decisiones conscientes, incentivando a las empresas a adoptar prácticas más sostenibles.
