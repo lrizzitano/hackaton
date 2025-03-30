@@ -66,3 +66,50 @@
   height: auto;
   border-radius: 8px;
 }
+
+/* Página de inicio */
+.home-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.home-description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.catalog-button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.catalog-button:hover {
+  background-color: #218838;
+}
+
+/* Botón para volver */
+.back-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #c82333;
+}
