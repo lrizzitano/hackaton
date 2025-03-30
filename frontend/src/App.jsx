@@ -10,7 +10,6 @@ function App() {
   // Estado para controlar la visibilidad del panel de login
   const [loginOpen, setLoginOpen] = useState(false);
 
-
     // --------------------------------------------------------------------------
     // Función para alternar la visibilidad del panel de login
     const toggleLogin = () => {
@@ -35,6 +34,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
+
 
   useEffect(() => {
     // Obtener todas las categorías
@@ -61,13 +61,14 @@ function App() {
   // Obtener productos de la categoría seleccionada
   const filterProductsByCategory = (categoryId) => {
     setProductsShown(products.filter((product => product.category._id === categoryId)));
+    setShowProducts(true);
+    setShowCatalog(false);
     setSelectedCategory(categoryId);
   };
   
-  /*.filter((category) =>
-    category.name.toLowerCase().includes(search.toLowerCase())
-  );*/
-
+const getSelectedCategoryName = () => {
+  return categories.find(cat => cat._id === selectedCategory).name
+}
   const filterProductsBySearch = (e) => {
     setProductsShown(products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase())));
     setSearch(e.target.value);
@@ -125,6 +126,12 @@ function App() {
           </form>
         </div>
       )}
+
+      {login && (
+        <div className="logged-message">
+          Logeado
+        </div>
+      )}
     
       {/* ---------------------------------------------------------------------- */}
 
@@ -170,28 +177,6 @@ function App() {
           )}
         </div>
 
-        {/* Sección de Productos de la Categoría Seleccionada */}
-        {selectedCategory && (
-          <>
-            <div className="section-title">Productos</div>
-            <div className="products-container">
-              {productsShown.length > 0 ? (
-                productsShown.map((product, index) => (
-                  <div key={index} className="product-card">
-                    <img src={product.image} alt={product.name} className="product-image" />
-                    <h3 className="product-name">{product.name}</h3>
-                    <p className="product-description">{product.description}</p>
-                    <p className="product-price">💲{product.price}</p>
-                    <p className="product-company">🏢 {product.company.name}</p>
-                  </div>
-                ))
-              ) : (
-                <p className="no-results">No hay productos en esta categoría.</p>
-              )}
-            </div>
-          </>
-        )}
-
         {/* Sección de Empresas */}
         <div className="section-title">🏆 Ranking de Empresas</div>
         <div className="leaderboard-container">
@@ -218,6 +203,31 @@ function App() {
           Volver al inicio
         </button>
       </>
+    ) : showProducts ? (
+
+        <>
+          <div className="section-title">{getSelectedCategoryName()}</div>
+          <div className="products-container">
+            {productsShown.length > 0 ? (
+              productsShown.map((product, index) => (
+                <div key={index} className="product-card">
+                  <img src={product.image} alt={product.name} className="product-image" />
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-description">{product.description}</p>
+                  <p className="product-price">💲{product.price}</p>
+                  <p className="product-company">🏢 {product.company.name}</p>
+                </div>
+              ))
+            ) : (
+              <p className="no-results">No hay productos en esta categoría.</p>
+            )}
+          </div>
+        {/* Botón para volver a la página principal */}
+        <button className="back-button" onClick={() => {setShowProducts(false); setShowCatalog(true)}}>
+          Volver atras
+        </button>
+        </>
+    
     ) : (
       // 📌 Página de inicio
       <div className="home-container">
@@ -229,7 +239,9 @@ function App() {
           Ir al catálogo
         </button>
       </div>
-     )}
+     )
+     
+   }
    </div>
     </>
   );
