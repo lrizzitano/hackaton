@@ -392,3 +392,15 @@
 .boton-carrito:hover {
   background-color: darkgreen;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header img {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+}
