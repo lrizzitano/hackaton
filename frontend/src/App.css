@@ -327,3 +327,17 @@
 }
 
 
+.boton-cerrar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4d4d; /* Rojo claro */
+  color: #ffffff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.boton-cerrar:hover {
+  background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
+}

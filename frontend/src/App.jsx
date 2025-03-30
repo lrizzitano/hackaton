@@ -76,6 +76,8 @@ function App() {
 
   return (
     <>
+    <title>Ethos Market</title>
+    <link rel="icon" href="./favicon.ico" />
       {/*
         Condicionalmente se muestra el botón "Log In" si el usuario aún no se ha logeado.
         Si login es true, el botón desaparece.
@@ -95,6 +97,9 @@ function App() {
         <div className="login-panel">
           <form onSubmit={handleLoginSubmit}>
             {/* Input para ingresar el mail */}
+            <div className="boton-cerrar" onClick={toggleLogin}>
+              X
+            </div>
             <div className="input-container">
               <label htmlFor="email">Ingrese su mail</label>
               <input
