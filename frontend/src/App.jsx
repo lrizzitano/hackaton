@@ -144,7 +144,7 @@ function App() {
 
       {login && (
         <div className="logged-message">
-          Logeado
+          Logueado
         </div>
       )}
     
@@ -264,14 +264,28 @@ function App() {
     ) : (
       // 📌 Página de inicio
       <div className="home-container">
-        <h1 className="home-title">Bienvenido a EcoStore</h1>
+        <h1 className="home-title">Ethos Market</h1>
+        <h2 className="home-subtitle">"El poder de elegir, el poder de cambiar"</h2>
         <p className="home-description">
-          Un marketplace sustentable donde encontrarás productos ecológicos de las mejores empresas comprometidas con el medio ambiente.
+          En EthosMarket creemos que cada compra es un voto por el futuro que queremos.
+          Nuestra plataforma no es solo una tienda online, sino una herramienta de empoderamiento
+          para los consumidores. A través de información clara y accesible, ayudamos a nuestros clientes
+          a tomar decisiones conscientes, incentivando a las empresas a adoptar prácticas más sostenibles.
+        </p>
+        <p className="home-description">
+          Creemos en el poder de la demanda informada: cuando los consumidores exigen productos éticos y ecológicos,
+          las marcas deben adaptarse. Por eso, en EthosMarket ofrecemos solo productos alineados con valores
+          de responsabilidad ambiental y social, fomentando un sistema de consumo más justo, transparente y sustentable.
+        </p>
+        <p className="home-description">
+          Cada compra aquí es un paso hacia un mundo donde la economía y el bienestar del planeta van de la mano.
+          Tú eliges. Tú decides. Tú transformas.
         </p>
         <button className="catalog-button" onClick={() => setShowCatalog(true)}>
           Ir al catálogo
         </button>
       </div>
+
      )
      
    }

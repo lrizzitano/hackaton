@@ -67,46 +67,56 @@
   border-radius: 8px;
 }
 
-/* Página de inicio */
 .home-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 20px;
-  color: white;
-  background-image: url('https://media.istockphoto.com/id/1248543652/es/vector/fondo-verde-abstracto-suave-y-de-ensue%C3%B1o.jpg?s=612x612&w=0&k=20&c=k5Lzs4HcAFvJrQiKU5IPT1dfVFjJSmeJ9FAzl3dhkYE='); /* Ruta de la imagen */
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20231226/pngtree-eco-friendly-gradient-field-vector-illustration-of-organic-green-background-with-image_13892656.png'); /* Cambia la URL por la de tu imagen */;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
 }
 
 .home-title {
-  font-size: 2.5rem;
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.home-subtitle {
+  font-size: 1.5em;
+  color: #16a085;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
 .home-description {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 30px;
+  font-size: 1.1em;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 .catalog-button {
-  background-color: #28a745;
+  background-color: #16a085;
   color: white;
-  padding: 12px 24px;
-  font-size: 1rem;
+  font-size: 1.1em;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .catalog-button:hover {
-  background-color: #218838;
+  background-color: #13866d;
 }
+
 
 /* Botón para volver */
 .back-button {
@@ -117,7 +127,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
+  top: 5px;
+  left: 20px;
+  position: fixed; /* Para que esté en la esquina superior izquierda */
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
 }
 
 .back-button:hover {
