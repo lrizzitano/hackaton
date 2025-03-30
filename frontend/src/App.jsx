@@ -95,6 +95,9 @@ function App() {
         <div className="login-panel">
           <form onSubmit={handleLoginSubmit}>
             {/* Input para ingresar el mail */}
+            <div className="boton-cerrar" onClick={toggleLogin}>
+              X
+            </div>
             <div className="input-container">
               <label htmlFor="email">Ingrese su mail</label>
               <input
