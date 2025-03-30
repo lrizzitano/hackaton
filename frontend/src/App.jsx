@@ -10,10 +10,16 @@ function App() {
   // Estado para controlar la visibilidad del panel de login
   const [loginOpen, setLoginOpen] = useState(false);
 
+  const [cartOpen, setCartOpen] = useState(false);
+
     // --------------------------------------------------------------------------
     // Función para alternar la visibilidad del panel de login
     const toggleLogin = () => {
       setLoginOpen(!loginOpen); // Cambia de abierto a cerrado o viceversa
+    };
+
+    const toggleCartPanel = () => {
+      setCartOpen(!cartOpen); // Cambia de abierto a cerrado o viceversa
     };
     // --------------------------------------------------------------------------
 
@@ -34,12 +40,12 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showProducts, setShowProducts] = useState(false); // boolean para saber si mostrar los productos 
   const [showCatalog, setShowCatalog] = useState(false); // Estado para cambiar entre vistas
-  const [productCounter, setProductCounter] = useState(0); // Contador de productos en el carrito
+  const [productsOnCart, setProductsOnCart] = useState([]); // Contador de productos en el carrito
   const [showProductsWithoutCategory, setShowProductsWithoutCategory] = useState(false);
 
 
   useEffect(() => {
-    // Obtener todas las categorías
+    // Obtener todas las categorías   
     fetch("https://hackathon-9hw7.onrender.com/api/categorias")
       .then((res) => res.json())
       .then((data) => setCategories(data))
@@ -89,7 +95,9 @@ function App() {
     setSearch(e.target.value);
   } 
 
-
+  const addProductToCart = (product) => {
+    setProductsOnCart(prevProducts => [...prevProducts, product]);
+  }
   return (
     <>
     <title>Ethos Market</title>
@@ -142,9 +150,15 @@ function App() {
         </div>
       )}
 
+      {cartOpen && (
+        <div>
+          Aca iria el panel del carrito
+        </div>
+      )}
+
       {login && (
         <div className="logged-message">
-          Logeado
+          Logueado
         </div>
       )}
     
@@ -170,7 +184,7 @@ function App() {
           onChange={(e) => filterProductsBySearchWithoutCategory(e)}
         />
 
-        <div className="cart-button">
+        <div className="cart-button" onClick={toggleCartPanel}>
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
         </div>
 
@@ -237,7 +251,7 @@ function App() {
             }}
         />
 
-        <div className="cart-button">
+        <div className="cart-button" onClick={toggleCartPanel}>
           <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras" className="cart-icon" />
         </div>
           <div className="section-title">{showProductsWithoutCategory? "Productos" : getSelectedCategoryName()}</div>
@@ -250,7 +264,7 @@ function App() {
                   <p className="product-price">💲{product.price}</p>
                   <p className="product-company">🏢 {product.company.name}</p>
                   <div className="contenedor">
-                    <button className="boton-carrito">Agregar al carrito</button>
+                    <button onClick={addProductToCart(product)}  className="boton-carrito">Agregar al carrito</button>
                   </div>
 
                 </div>
@@ -268,14 +282,28 @@ function App() {
     ) : (
       // 📌 Página de inicio
       <div className="home-container">
-        <h1 className="home-title">Bienvenido a EcoStore</h1>
+        <h1 className="home-title">Ethos Market</h1>
+        <h2 className="home-subtitle">"El poder de elegir, el poder de cambiar"</h2>
         <p className="home-description">
-          Un marketplace sustentable donde encontrarás productos ecológicos de las mejores empresas comprometidas con el medio ambiente.
+          En Ethos Market creemos que cada compra es un voto por el futuro que queremos.
+          Nuestra plataforma no es solo una tienda online, sino una herramienta de empoderamiento
+          para los consumidores. A través de información clara y accesible, ayudamos a nuestros clientes
+          a tomar decisiones conscientes, incentivando a las empresas a adoptar prácticas más sostenibles.
+        </p>
+        <p className="home-description">
+          Creemos en el poder de la demanda informada: cuando los consumidores exigen productos éticos y ecológicos,
+          las marcas deben adaptarse. Por eso, en EthosMarket ofrecemos solo productos alineados con valores
+          de responsabilidad ambiental y social, fomentando un sistema de consumo más justo, transparente y sustentable.
+        </p>
+        <p className="home-description">
+          Cada compra aquí es un paso hacia un mundo donde la economía y el bienestar del planeta van de la mano.
+          Tú eliges. Tú decides. Tú transformas.
         </p>
         <button className="catalog-button" onClick={() => setShowCatalog(true)}>
           Ir al catálogo
         </button>
       </div>
+
      )
      
    }
