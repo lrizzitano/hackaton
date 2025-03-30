@@ -2,6 +2,31 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  // --------------------------------------------------------------------------
+  // Estado para controlar si el usuario ya se ha logeado
+  const [login, setLogin] = useState(false);
+
+  // --------------------------------------------------------------------------
+  // Estado para controlar la visibilidad del panel de login
+  const [loginOpen, setLoginOpen] = useState(false);
+
+
+    // --------------------------------------------------------------------------
+    // Función para alternar la visibilidad del panel de login
+    const toggleLogin = () => {
+      setLoginOpen(!loginOpen); // Cambia de abierto a cerrado o viceversa
+    };
+
+    // --------------------------------------------------------------------------
+    // Función para manejar el envío del formulario del login
+    // Al presionar Enter o al hacer click en el botón "Logearse", se cierra el panel y se marca como logeado
+    const handleLoginSubmit = (e) => {
+      e.preventDefault(); // Evita el comportamiento por defecto del formulario
+      toggleLogin();      // Cierra el panel de login
+      setLogin(true);     // Marca que el usuario ya se logeo
+    };
+
+
   const [categories, setCategories] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [products, setProducts] = useState([]);
@@ -50,6 +75,56 @@ function App() {
 
 
   return (
+    <>
+      {/*
+        Condicionalmente se muestra el botón "Log In" si el usuario aún no se ha logeado.
+        Si login es true, el botón desaparece.
+      */}
+      {!login && (
+        <div className="login-button" onClick={toggleLogin}>
+          Log In
+        </div>
+      )}
+
+      {/*
+        Panel de login centrado en la pantalla.
+        Se muestra si loginOpen es true.
+        Se utiliza un formulario para que al presionar Enter se active el botón.
+      */}
+      {loginOpen && (
+        <div className="login-panel">
+          <form onSubmit={handleLoginSubmit}>
+            {/* Input para ingresar el mail */}
+            <div className="input-container">
+              <label htmlFor="email">Ingrese su mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="ejemplo@correo.com"
+              />
+            </div>
+            {/* Input para ingresar la contraseña */}
+            <div className="input-container">
+              <label htmlFor="password">Ingrese su contraseña</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="********"
+              />
+            </div>
+            {/* Botón "Logearse" que se activa al hacer click o presionar Enter */}
+            <button type="submit" className="login-submit-button">
+              Logearse
+            </button>
+          </form>
+        </div>
+      )}
+    
+      {/* ---------------------------------------------------------------------- */}
+
+
     <div className="container">
       {showCatalog ? (
        <>
@@ -143,6 +218,7 @@ function App() {
       </div>
      )}
    </div>
+    </>
   );
 }
 

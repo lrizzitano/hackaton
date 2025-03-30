@@ -131,3 +131,114 @@
   transform: scale(1.05); /* Hace que la tarjeta de empresa se agrande un poco al pasar el mouse */
 }
 
+/* Botón de Login */
+.login-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #90ee90; /* Verde claro */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Panel de Login */
+.login-panel {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: #90ee90; /* Verde claro */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Contenedor de cada input */
+.input-container {
+  margin-bottom: 15px;
+}
+
+/* Estilos para las etiquetas */
+.input-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+/* Estilos para los inputs */
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+/* Botón "Log In" en la esquina superior derecha */
+.login-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #66bb6a; /* Verde claro pero un poco más oscuro */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
+  font: bolder 1.2em sans-serif;
+}
+
+/* Panel de login centrado en la pantalla */
+.login-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra el panel */
+  background-color: #66bb6a; /* Verde consistente con el botón */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Contenedor de cada input */
+.input-container {
+  margin-bottom: 15px;
+  width: 96%;
+}
+
+/* Etiquetas de los inputs */
+.input-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+/* Campos de entrada */
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+/* Botón "Logearse" */
+.login-submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #66bb6a;
+  border: 1px solid #66bb6a;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-submit-button:hover {
+  background-color: #f0f0f0;
+}
