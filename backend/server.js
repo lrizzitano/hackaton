@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import routes from './routes.js'; // Importamos las rutas
 import cors from 'cors';
+import path from 'path';
 
 dotenv.config();
 
@@ -10,11 +11,21 @@ const allowedOrigins = ['http://localhost:5173/'];
 
 const app = express();
 
+const __dirname = path.resolve();
+
 app.use(express.json()); // allows us to accept JSON data in the req.body
 
 app.use(cors());
 
 app.use("/api", routes);
+
+if(process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
+	});
+}
 
 app.listen(5000, () => {
     connectDB();    // conectamos a la database
