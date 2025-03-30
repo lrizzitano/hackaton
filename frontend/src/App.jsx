@@ -62,7 +62,7 @@ function App() {
           placeholder="Buscar categorías o empresas..."
           className="search-bar"
           value={search}
-          onChange={(e) => filterProductsBySearch(e.target.value)}
+          onChange={(e) => filterProductsBySearch(e)}
         />
 
         {/* Sección de Categorías */}
