@@ -251,6 +251,10 @@
   font: bolder 1.2em sans-serif;
 }
 
+.login-button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
+}
+
 /* Panel de login centrado en la pantalla */
 .login-panel {
   position: fixed;
