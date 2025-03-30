@@ -15,8 +15,8 @@ function App() {
     const toggleLogin = () => {
       setLoginOpen(!loginOpen); // Cambia de abierto a cerrado o viceversa
     };
-
     // --------------------------------------------------------------------------
+
     // Función para manejar el envío del formulario del login
     // Al presionar Enter o al hacer click en el botón "Logearse", se cierra el panel y se marca como logeado
     const handleLoginSubmit = (e) => {
@@ -223,6 +223,7 @@ function App() {
         <>
           {/* Barra de búsqueda */}
           <input
+          autoFocus
           type="text"
           placeholder="Buscar productos"
           className="search-bar"
